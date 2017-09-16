@@ -6,8 +6,12 @@ app = Flask(__name__, static_folder="static")
 app.secret_key = "UyeOKsLuiPqBuiY_OgDDc7LuvaTFuvka"
 
 # Loading demo data is slow, so do it on server startup
+#TODO(Wesley) add more demos users
 demodata = analyze.get_demo_data()
-data = {"demo": demodata}
+data = {
+    "demo_a": demodata,
+    "demo_b": demodata,
+    "demo_c": demodata}
 
 
 @app.route('/')
@@ -26,10 +30,14 @@ def login_post():
     data[sid] = tidepool_import(request.form["username"], request.form["password"])
     return Response("OK", status=200) #TODO(Wesley) fail
 
-@app.route('/demo')
+@app.route('/demo', methods=["POST"])
+def demo_post():
+    session['id'] = request.form["demo_user"]
+    return Response("OK", status=200)
+
+@app.route('/demo', methods=["GET"])
 def demo():
-    session['id'] = "demo"
-    return redirect(url_for('trends'))
+    return app.send_static_file('demo.html')
 
 @app.route("/trends")
 def trends():
