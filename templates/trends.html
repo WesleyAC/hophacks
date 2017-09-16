@@ -11,6 +11,7 @@
     <script src="../static/js/materialize.min.js"></script>
     <script src="../static/js/d3.v4.min.js"></script>
     <link type="text/css" rel="stylesheet" href="../static/css/main.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/material-icon.css" rel="stylesheet">
 
     <script>
       $(document).ready(function(){
@@ -34,6 +35,12 @@
             <div class="carousel-item white-text">
               <h4 class="white-text">{{ problem }}</h4>
               <h5 class="white-text">{{ solution }}</h5>
+            </div>
+            <div class="carousel-fixed-item center">
+              <a class="btn-floating btn-large waves-effect waves-light red"
+                 onclick="$('.carousel').carousel('next');">
+                  <i class="material-icons">arrow_forward</i>
+              </a>
             </div>
           {% endfor %}
         </div>

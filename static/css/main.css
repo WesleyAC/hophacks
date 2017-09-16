@@ -26,7 +26,13 @@ body {
 
 .carousel {
   margin-top:40px;
-  -webkit-perspective:550px;
-  perspective:550px;
+  -webkit-perspective:10000px;
+  perspective:10000px;
 }
 
+.axis path
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}

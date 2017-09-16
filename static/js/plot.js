@@ -29,20 +29,14 @@ d3.json("/graph", function(d) {
 
   g.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .attr("fill","none")
-      .attr("stroke","#FFF")
-      .attr("stroke-width","1")
-      .attr("shape-rendering","crispEdges")
+      .attr("class","axis")
       .call(d3.axisBottom(x))
     .select(".domain")
       .remove();
 
   var yAxis = d3.axisLeft(y);
   g.append("g")
-      .attr("fill","none")
-      .attr("stroke","#FFF")
-      .attr("stroke-width","1")
-      .attr("shape-rendering","crispEdges")
+      .attr("class","axis")
       .call(yAxis)
     .append("text")
       .attr("fill", "#FFF")
@@ -62,12 +56,6 @@ d3.json("/graph", function(d) {
       .attr("d", line);
 
   d3.selectAll("text").attr("fill","#FFF");
-
-  d3.selectAll("axis path")
-    .attr("fill","none")
-    .attr("stroke","grey")
-    .attr("stroke-wdith","1")
-    .attr("shape-rendering","crespEdges");
 });
 
 
