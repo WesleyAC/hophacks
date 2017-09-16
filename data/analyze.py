@@ -45,10 +45,10 @@ def forgot_bolus(avg_data):
     pass
 
 def bedtime_bg(avg_data):
-    pass
+    return avg_data.avgs[time(23, 59)] > 200 # That was easy
 
 def morning_bg(avg_data):
-    pass
+    return not bedtime_bg(avg_data) and avg_data.avgs[time(7,1)] > 200
 
 def forgot_correction(avg_data):
     pass
