@@ -24,4 +24,10 @@ def trends():
     global demodata
     if "demo" in session and session["demo"]:
         print(analyze.get_problems(demodata))
-    return render_template('trends.html')
+    return render_template('trends.html',
+            problem1="p1",
+            solution1="s1",
+            problem2="p2",
+            solution2="s2",
+            problem3="p3",
+            solution3="s3")
