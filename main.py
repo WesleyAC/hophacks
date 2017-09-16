@@ -44,7 +44,7 @@ def demo():
 
 @app.route('/graph')
 def graph():
-    return Response(json.dumps({"[{:02d},{:02d}]".format(k.hour, k.minute): v for (k,v) in sorted(data[session["id"]].avgs.items())}), mimetype="application/json")
+    return Response(json.dumps([{"date": "[{:02d},{:02d}]".format(k.hour, k.minute), "bg": v} for (k,v) in sorted(data[session["id"]].avgs.items())]), mimetype="application/json")
 
 @app.route("/trends")
 def trends():
