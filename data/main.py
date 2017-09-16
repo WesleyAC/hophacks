@@ -85,6 +85,51 @@ class PumpSettings:
         self.bolus_carbs = [{"start": i["start"]/(1000*60*60), "amount": i["amount"]} for i in tidepool_data["carbRatio"]]
         self.bolus_correction = [{"start": i["start"]/(1000*60*60), "amount": i["amount"]} for i in tidepool_data["insulinSensitivity"]]
 
+    def increment_basel_block(self, timeofday, amount):
+        for block in self.basel:
+            if timeofday == "morning":
+                if block["start"] >= 7 and block["start"] < 11:
+                    block["rate"] += amount
+            elif timeofday == "afternoon":
+                if block["start"] >= 11 and block["start"] < 16:
+                    block["rate"] += amount
+            elif timeofday == "evening":
+                if block["start"] >= 16 and block["start"] < 20:
+                    block["rate"] += amount
+            elif timeofday == "night":
+                if block["start"] >= 20 and block["start"] < 7:
+                    block["rate"] += amount
+
+    def increment_bolus_carbs_block(self, timeofday, amount):
+        for block in self.bolus_carbs:
+            if timeofday == "morning":
+                if block["start"] >= 7 and block["start"] < 11:
+                    block["amount"] += amount
+            elif timeofday == "afternoon":
+                if block["start"] >= 11 and block["start"] < 16:
+                    block["amount"] += amount
+            elif timeofday == "evening":
+                if block["start"] >= 16 and block["start"] < 20:
+                    block["amount"] += amount
+            elif timeofday == "night":
+                if block["start"] >= 20 and block["start"] < 7:
+                    block["amount"] += amount
+
+    def increment_bolus_correction_block(self, timeofday, amount):
+        for block in self.bolus_correction:
+            if timeofday == "morning":
+                if block["start"] >= 7 and block["start"] < 11:
+                    block["amount"] += amount
+            elif timeofday == "afternoon":
+                if block["start"] >= 11 and block["start"] < 16:
+                    block["amount"] += amount
+            elif timeofday == "evening":
+                if block["start"] >= 16 and block["start"] < 20:
+                    block["amount"] += amount
+            elif timeofday == "night":
+                if block["start"] >= 20 and block["start"] < 7:
+                    block["amount"] += amount
+
     @classmethod
     def from_all_data(cls, data):
         """
@@ -93,4 +138,5 @@ class PumpSettings:
         """
         settings = list(filter(lambda x: x["type"] == "pumpSettings", data))
         settings.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%jT%H:%M:%S"))
+
         return cls(settings[0])
