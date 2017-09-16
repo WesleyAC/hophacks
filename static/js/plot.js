@@ -2,7 +2,7 @@ var svg = d3.select("svg"),
 margin = {top: 20, right: 20, bottom: 30, left: 50},
 width = +svg.attr("width") - margin.left - margin.right,
 height = +svg.attr("height") - margin.top - margin.bottom,
-g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+g = svg.append("g") .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var x = d3.scaleUtc()
   .rangeRound([0, width]);
@@ -29,13 +29,21 @@ d3.json("/graph", function(d) {
 
   g.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .attr("fill","#FFF")
+      .attr("fill","none")
+      .attr("stroke","#FFF")
+      .attr("stroke-width","1")
+      .attr("shape-rendering","crispEdges")
       .call(d3.axisBottom(x))
     .select(".domain")
       .remove();
 
+  var yAxis = d3.axisLeft(y);
   g.append("g")
-      .call(d3.axisLeft(y))
+      .attr("fill","none")
+      .attr("stroke","#FFF")
+      .attr("stroke-width","1")
+      .attr("shape-rendering","crispEdges")
+      .call(yAxis)
     .append("text")
       .attr("fill", "#FFF")
       .attr("transform", "rotate(-90)")
@@ -52,7 +60,14 @@ d3.json("/graph", function(d) {
       .attr("stroke-linecap", "round")
       .attr("stroke-width", 1.5)
       .attr("d", line);
-});
 
+  d3.selectAll("text").attr("fill","#FFF");
+
+  d3.selectAll("axis path")
+    .attr("fill","none")
+    .attr("stroke","grey")
+    .attr("stroke-wdith","1")
+    .attr("shape-rendering","crespEdges");
+});
 
 

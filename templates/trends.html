@@ -11,6 +11,12 @@
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/materialize.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $('.carousel').carousel();
+      });
+    </script>
   </head>
   <body>
     <div class="container">
@@ -23,27 +29,19 @@
       <svg width="960" height="500"> </svg>
 
       <div class="trend-list">
-        <ul>
+        <div class="carousel carousel-slider center" data-indicators="true">
           {% for problem, solution in problems %}
-          <li>
-            <h4 class="white-text"> {{ problem }} </h5>
-            <h5 class="white-text"> → {{ solution }} </h6>
-            <br>
-          </li>
+            <div class="carousel-item red white-text">
+              <h4 class="white-text">{{ problem }}</h4>
+              <h5 class="white-text">{{ solution }}</h5>
+            </div>
           {% endfor %}
-        </ul>
+        </div>
       </div>
 
       <br>
 
     </div>
-
-
-    <!--
-    <div class="row center bottom">
-      <a class="waves-effect waves-light btn">View Suggested Pump Settings</a>
-    </div>
-    -->
 
     <script src="../static/js/plot.js"></script>
 
