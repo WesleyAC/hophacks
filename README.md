@@ -15,3 +15,5 @@ GlucoView vastly simplifies the process of interpreting CGM data by providing a 
 GlucoView imports it's data from tidepool blip, allowing anyone with a tidepool account to enjoy a simpler way to interact with their diabetes data.
 
 In a few clicks, the use can import data from tidepool and have personalized suggestions ready to help them get their diabetes under control.
+
+![GlucoView data view page](imgs/data.png)
