@@ -1,5 +1,7 @@
 # GlucoView
 
+![GlucoView main page](imgs/main.png)
+
 ## Inspiration
 
 In the past 5 years, people with type one diabetes have gone from having blood glucose measurements 4 times a day to hundreds of times a day, thanks to continuous glucose monitors. Despite the more than 100-fold increase in the amount of data that we have, the ways that we view that data have hardly changed. What's more, when patients want to use the vast amounts of data available to them to make decisions about their diabetes care regimen, they need to discuss it with a doctor - a process which can take months for some patients, if it is available at all.
