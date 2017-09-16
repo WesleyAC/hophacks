@@ -1,4 +1,5 @@
 from datetime import datetime, time
+from collections import OrderedDict
 
 def mmol_to_mgdl(x):
     return x*18
@@ -26,11 +27,11 @@ class AvgData:
     """
     Data about an "average" 24-hour period, including standard deviations
     """
-    def __init__(self, raw_data, end_time, time_period):
+    def __init__(self, raw_data, end_time, time_period, moving_avg=6):
         """
         Takes a RawData object and averages it over dtime
         """
-        self.datamap = {} # Maps time -> list(data point)
+        self.datamap = OrderedDict() # Maps time -> list(data point)
         data = filter(lambda x: x[0] > end_time - time_period, raw_data.data)
         for point in data:
             point_time = time(point[0].hour, point[0].minute)
@@ -38,7 +39,17 @@ class AvgData:
                 self.datamap[point_time] = []
             self.datamap[point_time].append(point[1])
 
-        self.avgs = {k: sum(v)/len(v) for (k,v) in self.datamap.items()}
+        self.avgs_list = []
+        for i, point in enumerate(self.datamap.values()):
+            avg = 0
+            for moving_idx in range(i-moving_avg, i+moving_avg+1):
+                iv = list(self.datamap.values())[moving_idx % len(self.datamap)]
+                avg_at_idx = sum(iv)/len(iv)
+                avg += avg_at_idx
+            avg /= moving_avg*2 + 1
+            self.avgs_list.append(avg)
+
+        self.avgs = {list(self.datamap.keys())[i]: v for (i, v) in enumerate(self.avgs_list)}
 
 
 class PumpSettings:
