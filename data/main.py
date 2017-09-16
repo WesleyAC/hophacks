@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, time
 
 class RawData:
     """
@@ -22,8 +22,20 @@ class AvgData:
     """
     Data about an "average" 24-hour period, including standard deviations
     """
-    def __init__(self):
-        self.data = []
+    def __init__(self, raw_data, end_time, time_period):
+        """
+        Takes a RawData object and averages it over dtime
+        """
+        self.datamap = {} # Maps time -> list(data point)
+        data = filter(lambda x: x[0] > end_time - time_period, raw_data.data)
+        for point in data:
+            point_time = time(point[0].hour, point[0].minute)
+            if point_time not in self.datamap:
+                self.datamap[point_time] = []
+            self.datamap[point_time].append(point[1])
+
+        self.avgs = {k: sum(v)/len(v) for (k,v) in self.datamap.items()}
+
 
 class PumpSettings:
     """
