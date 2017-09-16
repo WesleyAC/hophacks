@@ -22,8 +22,13 @@ def demo():
 @app.route("/trends")
 def trends():
     global demodata
+    problems = []
     if "demo" in session and session["demo"]:
-        print(analyze.get_problems(demodata))
+        for problem in analyze.get_problems(demodata):
+            problems.append(analyze.problem_to_text(problem))
+
+    print(problems)
+
     return render_template('trends.html',
             problem1="p1",
             solution1="s1",

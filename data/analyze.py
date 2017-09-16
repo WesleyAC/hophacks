@@ -6,6 +6,26 @@ def get_demo_data():
     d = json.loads(open("data/data_download.json").read())
     return AvgData(RawData(d), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
 
+def problem_to_text(problem):
+    """
+    Takes in a problem tuple and returns a tuple of the problem and solution
+    that should be shown to the user.
+    """
+    if problem[0] == "HighBg":
+        #TODO(Wesley) stop giving bad advice
+        return ("Your blood sugar is often high in the {}.".format(problem[1]),
+                "Try increasing your {} basel insulin.".format(problem[1]))
+    elif problem[0] == "LowBg":
+        #TODO(Wesley) stop giving bad advice
+        return ("Your blood sugar is often low in the {}.".format(problem[1]),
+                "Try decreasing your {} basel insulin.".format(problem[1]))
+    elif problem[0] == "BedtimeBg":
+        return ("Your blood sugar is often high before bedtime.",
+                "Try setting a reminder to give a correction bolus before you go to bed.")
+    elif problem[0] == "MorningBg":
+        return ("Your blood sugar is often high in the morning.",
+                "Try increasing your nightime basel insulin.")
+
 def get_problems(avg_data):
     problems = []
     high = time_high(avg_data)
