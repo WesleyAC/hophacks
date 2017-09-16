@@ -30,9 +30,10 @@ class PumpSettings:
         pumpSettings event.
         """
         assert tidepool_data["type"] == "pumpSettings"
+        print(tidepool_data)
         self.basel = tidepool_data["basalSchedules"][tidepool_data["activeSchedule"]]
-        self.bolus_carbs = tidepool_data["basalSchedules"][tidepool_data["activeSchedule"]]
-        self.bolus_correction = tidepool_data["insulinSensitivities"][tidepool_data["activeSchedule"]]
+        self.bolus_carbs = tidepool_data["carbRatio"]
+        self.bolus_correction = tidepool_data["insulinSensitivity"]
 
     @classmethod
     def from_all_data(cls, data):
@@ -41,7 +42,5 @@ class PumpSettings:
         object that represents the most recent active profile.
         """
         settings = list(filter(lambda x: x["type"] == "pumpSettings", data))
-        # 2017-05-30T21:14:07
-        # %Y-%m-%jT%H:%M:%S
         settings.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%jT%H:%M:%S"))
-        return settings[0]
+        return cls(settings[0])
