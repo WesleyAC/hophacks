@@ -1,7 +1,10 @@
-from data import analyze
+from data import analyze, main
 from flask import Flask, session, redirect, url_for, render_template
 app = Flask(__name__, static_folder="static")
 app.secret_key = "UyeOKsLuiPqBuiY_OgDDc7LuvaTFuvka"
+
+# Loading demo data is slow, so do it on server startup
+demodata = analyze.get_demo_data()
 
 @app.route('/')
 def root():
@@ -18,4 +21,7 @@ def demo():
 
 @app.route("/trends")
 def trends():
+    global demodata
+    if "demo" in session and session["demo"]:
+        print(analyze.get_problems(demodata))
     return render_template('trends.html')

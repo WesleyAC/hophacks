@@ -1,4 +1,10 @@
-from datetime import time
+from datetime import time, datetime, timedelta
+import json
+from data.main import RawData, AvgData
+
+def get_demo_data():
+    d = json.loads(open("data/data_download.json").read())
+    return AvgData(RawData(d), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
 
 def get_problems(avg_data):
     problems = []
