@@ -80,10 +80,9 @@ class PumpSettings:
         pumpSettings event.
         """
         assert tidepool_data["type"] == "pumpSettings"
-        print(tidepool_data)
-        self.basel = tidepool_data["basalSchedules"][tidepool_data["activeSchedule"]]
-        self.bolus_carbs = tidepool_data["carbRatio"]
-        self.bolus_correction = tidepool_data["insulinSensitivity"]
+        self.basel = [{"start": i["start"]/(1000*60*60), "rate": i["rate"]} for i in tidepool_data["basalSchedules"][tidepool_data["activeSchedule"]]]
+        self.bolus_carbs = [{"start": i["start"]/(1000*60*60), "amount": i["amount"]} for i in tidepool_data["carbRatio"]]
+        self.bolus_correction = [{"start": i["start"]/(1000*60*60), "amount": i["amount"]} for i in tidepool_data["insulinSensitivity"]]
 
     @classmethod
     def from_all_data(cls, data):

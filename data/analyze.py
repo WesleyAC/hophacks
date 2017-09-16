@@ -36,9 +36,9 @@ def get_problems(avg_data):
     bedtime = bedtime_bg(avg_data)
     morning = morning_bg(avg_data)
     if high is not None:
-        problems.append(("HighBg", high))
+        problems.append(("HighBg", time_to_fuzzy(high)))
     if low is not None:
-        problems.append(("LowBg", low))
+        problems.append(("LowBg", time_to_fuzzy(low)))
     if bedtime:
         problems.append(("BedtimeBg",))
     elif morning:
@@ -72,7 +72,7 @@ def time_high(avg_data):
     """
     high_point = max(slice_to_daytime(avg_data.avgs).items(), key=lambda x: x[1])
     if high_point[1] > 200:
-        return time_to_fuzzy(high_point[0])
+        return high_point[0]
     else:
         return None
 
@@ -82,7 +82,7 @@ def time_low(avg_data):
     """
     low_point = min(slice_to_daytime(avg_data.avgs).items(), key=lambda x: x[1])
     if low_point[1] < 70:
-        return time_to_fuzzy(low_point[0])
+        return low_point[0]
     else:
         return None
 
