@@ -2,9 +2,18 @@ from datetime import time, datetime, timedelta
 import json
 from data.main import RawData, AvgData
 
-def get_demo_data():
-    d = json.loads(open("data/data_download.json").read())
-    return AvgData(RawData(d), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
+demodata = json.loads(open("data/data_download.json").read())
+
+def get_demo_data_a():
+    return AvgData(RawData(demodata), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
+
+def get_demo_data_b():
+    rd = RawData(demodata)
+    rd.data = [(dp[0], dp[1] - 100) for dp in rd.data]
+    return AvgData(rd, datetime(2016, 1, 20, 10, 47, 6), timedelta(1))
+
+def get_demo_data_c():
+    return AvgData(RawData(demodata), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
 
 def problem_to_text(problem):
     """

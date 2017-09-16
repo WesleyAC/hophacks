@@ -7,11 +7,13 @@ app.secret_key = "UyeOKsLuiPqBuiY_OgDDc7LuvaTFuvka"
 
 # Loading demo data is slow, so do it on server startup
 #TODO(Wesley) add more demos users
-demodata = analyze.get_demo_data()
+demodata_a = analyze.get_demo_data_a()
+demodata_b = analyze.get_demo_data_b()
+demodata_c = analyze.get_demo_data_c()
 data = {
-    "demo_a": demodata,
-    "demo_b": demodata,
-    "demo_c": demodata}
+    "demo_a": demodata_a,
+    "demo_b": demodata_b,
+    "demo_c": demodata_c}
 
 
 @app.route('/')

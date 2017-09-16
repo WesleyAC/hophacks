@@ -39,6 +39,8 @@ class AvgData:
         """
         Takes a RawData object and averages it over dtime
         """
+        self.raw = raw_data
+
         self.datamap = OrderedDict() # Maps time -> list(data point)
         data = filter(lambda x: x[0] > end_time - time_period, raw_data.data)
         for point in data:
