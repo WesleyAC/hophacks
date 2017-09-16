@@ -23,6 +23,8 @@ class RawData:
             #TODO(Wesley) check for unit
             self.data.append((timestamp, mmol_to_mgdl(datapoint["value"])))
 
+        self.data.sort()
+
         self.insulin = []
 
         insulin_data = list(filter(lambda x: x["type"] == "bolus", tidepool_data))
@@ -35,7 +37,7 @@ class AvgData:
     """
     Data about an "average" 24-hour period, including standard deviations
     """
-    def __init__(self, raw_data, end_time, time_period, moving_avg=10):
+    def __init__(self, raw_data, end_time, time_period, moving_avg=50):
         """
         Takes a RawData object and averages it over dtime
         """

@@ -8,13 +8,7 @@ app.secret_key = "UyeOKsLuiPqBuiY_OgDDc7LuvaTFuvka"
 
 # Loading demo data is slow, so do it on server startup
 #TODO(Wesley) add more demos users
-demodata_a = analyze.get_demo_data_a()
-demodata_b = analyze.get_demo_data_b()
-demodata_c = analyze.get_demo_data_c()
-data = {
-    "demo_a": demodata_a,
-    "demo_b": demodata_b,
-    "demo_c": demodata_c}
+data = {"demo": analyze.demo_data_a}
 
 
 @app.route('/')
@@ -40,7 +34,9 @@ def demo_post():
 
 @app.route('/demo', methods=["GET"])
 def demo():
-    return app.send_static_file('demo.html')
+    # return app.send_static_file('demo.html')
+    session['id'] = 'demo'
+    return redirect(url_for("trends"))
 
 @app.route('/graph')
 def graph():

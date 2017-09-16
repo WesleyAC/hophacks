@@ -3,17 +3,11 @@ import json
 from data.main import RawData, AvgData
 
 demodata = json.loads(open("data/data_download.json").read())
+rawdata = RawData(demodata)
 
-def get_demo_data_a():
-    return AvgData(RawData(demodata), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
-
-def get_demo_data_b():
-    rd = RawData(demodata)
-    rd.data = [(dp[0], dp[1] - 100) for dp in rd.data]
-    return AvgData(rd, datetime(2016, 1, 20, 10, 47, 6), timedelta(1))
-
-def get_demo_data_c():
-    return AvgData(RawData(demodata), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
+demo_data_a = AvgData(rawdata, datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
+# demo_data_b = AvgData(rawdata, datetime(2017, 1, 23, 22, 58, 3), timedelta(30))
+# demo_data_c = AvgData(rawdata, datetime(2016, 1, 18, 10, 47, 6), timedelta(7))
 
 def problem_to_text(problem):
     """
