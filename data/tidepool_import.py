@@ -1,3 +1,5 @@
+from data.main import RawData, AvgData
+from datetime import time, datetime, timedelta
 import requests
 
 def tidepool_import(username, passwd):
@@ -10,4 +12,5 @@ def tidepool_import(username, passwd):
         "Content-Type": "application/json"
     }
     r = requests.get('https://api.tidepool.org/data/{}'.format(user_id), headers=headers)
-    return r.json()
+    #TODO(Wesley) fix hardcoded date
+    return AvgData(RawData(r.json()), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))

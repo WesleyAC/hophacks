@@ -8,8 +8,14 @@
 
     <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="../static/css/main.css">
-    <script src="../static/js/materialize.min.js"></script>
     <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/materialize.min.js"></script>
+
+    <script>
+      submitLogin = function() {
+        $.post("login", {"username": $("#email_form").val(), "password": $("#password_form").val()}, function(data, txt_status, jqxhr) { window.location.replace("/trends") });
+      }
+    </script>
   </head>
   <body>
 
@@ -33,11 +39,11 @@
               <label class="active" for="email_form">Email</label>
             </div>
             <div class="input-field">
-              <input id="password_form" type="password" class="validate">
+              <input id="password_form" type="password">
               <label class="active" for="password_form">Password</label>
             </div>
             <div class="input-field">
-              <a class="waves-effect waves-light btn">Import</a>
+              <a class="waves-effect waves-light btn" onclick="submitLogin()">Import</a>
             </div>
           </div>
         </div>
