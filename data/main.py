@@ -35,7 +35,7 @@ class AvgData:
     """
     Data about an "average" 24-hour period, including standard deviations
     """
-    def __init__(self, raw_data, end_time, time_period, moving_avg=6):
+    def __init__(self, raw_data, end_time, time_period, moving_avg=10):
         """
         Takes a RawData object and averages it over dtime
         """
