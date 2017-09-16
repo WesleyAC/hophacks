@@ -46,10 +46,12 @@ def graph():
 def trends():
     global demodata
     problems = []
+    settings = None
     if "id" in session:
         for problem in analyze.get_problems(data[session["id"]]):
             problems.append(analyze.problem_to_text(problem))
+        settings = analyze.get_schedule(data[session["id"]].raw.tidepool)
     else:
         return redirect(url_for("login_get"))
 
-    return render_template('trends.html', problems=problems)
+    return render_template('trends.html', problems=problems, settings=settings)

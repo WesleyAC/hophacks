@@ -1,6 +1,6 @@
 from datetime import time, datetime, timedelta
 import json
-from data.main import RawData, AvgData
+from data.main import RawData, AvgData, PumpSettings
 
 demodata = json.loads(open("data/data_download.json").read())
 rawdata = RawData(demodata)
@@ -44,6 +44,9 @@ def get_problems(avg_data):
     elif morning:
         problems.append(("MorningBg",))
     return problems
+
+def get_schedule(data):
+    return PumpSettings.from_all_data(data)
 
 def slice_to_daytime(data):
     """

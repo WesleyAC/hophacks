@@ -14,6 +14,7 @@ class RawData:
 
         only does cgm data right now
         """
+        self.tidepool = tidepool_data
         self.data = []
         cgm_data = list(filter(lambda x: x["type"] == "cbg", tidepool_data))
         cgm_data.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%jT%H:%M:%S"))
