@@ -50,7 +50,7 @@ def trends():
     if "id" in session:
         for problem in analyze.get_problems(data[session["id"]]):
             problems.append(analyze.problem_to_text(problem))
-        settings = analyze.get_schedule(data[session["id"]].raw.tidepool)
+        settings = analyze.get_schedule(data[session["id"]])
     else:
         return redirect(url_for("login_get"))
 

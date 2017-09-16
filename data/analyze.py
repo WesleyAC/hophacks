@@ -46,7 +46,18 @@ def get_problems(avg_data):
     return problems
 
 def get_schedule(data):
-    return PumpSettings.from_all_data(data)
+    return PumpSettings.from_all_data(data.raw.tidepool)
+
+def get_new_schedule(data):
+    old_schedule = get_schedule(data)
+    for problem in get_problems(data):
+        if problem[0] == "HighBg":
+            old_schedule.increment_basel_block(problem[1], 0.25)
+        if problem[0] == "LowBg":
+            old_schedule.increment_basel_block(problem[1], -0.25)
+        if problem[0] == "MorningBg":
+            old_schedule.increment_basel_block("night", 0.25)
+    return old_schedule # Not what it sounds like...
 
 def slice_to_daytime(data):
     """
