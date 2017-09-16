@@ -27,12 +27,4 @@ def trends():
         for problem in analyze.get_problems(demodata):
             problems.append(analyze.problem_to_text(problem))
 
-    print(problems)
-
-    return render_template('trends.html',
-            problem1="p1",
-            solution1="s1",
-            problem2="p2",
-            solution2="s2",
-            problem3="p3",
-            solution3="s3")
+    return render_template('trends.html', problems=problems)

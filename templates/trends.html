@@ -21,21 +21,13 @@
 
       <div class="trend-list">
         <ul>
+          {% for problem, solution in problems %}
           <li>
-            <h4 class="white-text"> {{ problem1 }} </h5>
-            <h5 class="white-text"> → {{solution1 }} </h6>
+            <h4 class="white-text"> {{ problem }} </h5>
+            <h5 class="white-text"> → {{ solution }} </h6>
             <br>
           </li>
-          <li>
-            <h4 class="white-text"> {{ problem2 }} </h5>
-            <h5 class="white-text"> → {{solution2 }} </h6>
-            <br>
-          </li>
-          <li>
-            <h4 class="white-text"> {{ problem3 }} </h5>
-            <h5 class="white-text"> → {{solution3 }} </h6>
-            <br>
-          </li>
+          {% endfor %}
         </ul>
       </div>
 
