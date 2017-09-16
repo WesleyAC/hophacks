@@ -4,8 +4,19 @@ class RawData:
     """
     Data including both CGM datapoings and boluses
     """
-    def __init__(self):
+    def __init__(self, tidepool_data):
+        """
+        takes tidepool_data as a python object containing all tidepool data
+
+        only does cgm data right now
+        """
         self.data = []
+        cgm_data = list(filter(lambda x: x["type"] == "cbg", tidepool_data))
+        cgm_data.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%jT%H:%M:%S"))
+
+        for datapoint in cgm_data:
+            timestamp = datetime.strptime(datapoint["deviceTime"], "%Y-%m-%jT%H:%M:%S")
+            self.data.append((timestamp, datapoint["value"]))
 
 class AvgData:
     """
