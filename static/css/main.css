@@ -17,5 +17,11 @@ body {
 
 .trend-list {
   text-align:left;
+  height:200px;
+}
+
+.carousel, .carousel-item {
+  min-height:200px !important;
+  max-height:200px !important;
 }
 
