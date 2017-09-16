@@ -51,7 +51,8 @@ def trends():
         for problem in analyze.get_problems(data[session["id"]]):
             problems.append(analyze.problem_to_text(problem))
         settings = analyze.get_schedule(data[session["id"]])
+        new_settings = analyze.get_new_schedule(data[session["id"]])
     else:
         return redirect(url_for("login_get"))
 
-    return render_template('trends.html', problems=problems, settings=settings)
+    return render_template('trends.html', problems=problems, settings=settings, new_settings=new_settings)
