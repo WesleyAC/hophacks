@@ -15,7 +15,7 @@
       height = +svg.attr("height") - margin.top - margin.bottom,
       g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      var x = d3.scaleTime()
+      var x = d3.scaleUtc()
         .rangeRound([0, width]);
 
       var y = d3.scaleLinear()
@@ -34,6 +34,8 @@
         d.forEach(function(elem) {
             elem.date = parseTime(elem.date);
         });
+
+        console.log(d3.extent(d, function(d) { return d.date; }));
 
         x.domain(d3.extent(d, function(d) { return d.date; }));
         y.domain(d3.extent(d, function(d) { return d.bg; }));
@@ -63,7 +65,6 @@
             .attr("stroke-width", 1.5)
             .attr("d", line);
       });
-
 
     </script>
 
