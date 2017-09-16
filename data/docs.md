@@ -40,3 +40,10 @@ Not sure what this is
 * Upload
 
 {'byUser': '33dbe336c6', 'computerTime': '2016-06-06T16:37:45', 'conversionOffset': 0, 'deviceId': 'multiple', 'deviceManufacturers': ['Medtronic'], 'deviceModel': 'Paradigm Revel 523', 'deviceSerialNumber': '710846', 'deviceTags': ['insulin-pump'], 'guid': '1a912122-29d1-461f-aaa4-dc35742a3956', 'id': 'iqntrd002bquq81ee90l2i9ptbalajld', 'payload': {'skippedUploads': []}, 'time': '2016-06-06T23:37:45.000Z', 'timeProcessing': 'utc-bootstrapping', 'timezone': 'US/Pacific', 'timezoneOffset': -420, 'type': 'upload', 'uploadId': 'upid_09bf58f75f9f', 'version': '0.264.0'}
+
+
+Events we care about:
+
+* cbg/smbg
+* pumpSettings
+* wizard/bolus
