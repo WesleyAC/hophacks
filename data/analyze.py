@@ -1,5 +1,21 @@
 from datetime import time
 
+def get_problems(avg_data):
+    problems = []
+    high = time_high(avg_data)
+    low = time_low(avg_data)
+    bedtime = bedtime_bg(avg_data)
+    morning = morning_bg(avg_data)
+    if high is not None:
+        problems.append(("HighBg", high))
+    if low is not None:
+        problems.append(("LowBg", low))
+    if bedtime:
+        problems.append(("BedtimeBg",))
+    elif morning:
+        problems.append(("MorningBg",))
+    return problems
+
 def slice_to_daytime(data):
     """
     takes a dict of bg data and returns a dict that only has data from the daytime
