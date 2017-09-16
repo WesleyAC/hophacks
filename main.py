@@ -1,6 +1,7 @@
 from data import analyze, main
 from data.tidepool_import import tidepool_import
 import uuid
+import json
 from flask import Flask, Response, session, request, redirect, url_for, render_template
 app = Flask(__name__, static_folder="static")
 app.secret_key = "UyeOKsLuiPqBuiY_OgDDc7LuvaTFuvka"
@@ -40,6 +41,10 @@ def demo_post():
 @app.route('/demo', methods=["GET"])
 def demo():
     return app.send_static_file('demo.html')
+
+@app.route('/graph')
+def graph():
+    return Response(json.dumps({"[{:02d},{:02d}]".format(k.hour, k.minute): v for (k,v) in sorted(data[session["id"]].avgs.items())}), mimetype="application/json")
 
 @app.route("/trends")
 def trends():
