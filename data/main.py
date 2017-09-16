@@ -1,5 +1,8 @@
 from datetime import datetime, time
 
+def mmol_to_mgdl(x):
+    return x*18
+
 class RawData:
     """
     Data including both CGM datapoings and boluses
@@ -16,7 +19,8 @@ class RawData:
 
         for datapoint in cgm_data:
             timestamp = datetime.strptime(datapoint["deviceTime"], "%Y-%m-%jT%H:%M:%S")
-            self.data.append((timestamp, datapoint["value"]))
+            #TODO(Wesley) check for unit
+            self.data.append((timestamp, mmol_to_mgdl(datapoint["value"])))
 
 class AvgData:
     """
