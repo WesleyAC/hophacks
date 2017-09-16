@@ -1,7 +1,6 @@
 body {
   background-image: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("../img/bg.jpg");
   background-size: cover;
-  /*background-position: center center;*/
 }
 
 .container {
@@ -17,4 +16,17 @@ body {
 
 .trend-list {
   text-align:left;
+  height:200px;
 }
+
+.carousel, .carousel-item {
+  min-height:200px !important;
+  max-height:200px !important;
+}
+
+.carousel {
+  margin-top:40px;
+  -webkit-perspective:550px;
+  perspective:550px;
+}
+
