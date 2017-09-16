@@ -10,11 +10,11 @@
     <link type="text/css" rel="stylesheet" href="../static/css/main.css">
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/materialize.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="../static/js/d3.v4.min.js"></script>
 
     <script>
       $(document).ready(function(){
-        $('.carousel').carousel();
+          $('.carousel').carousel({full_width: true});
       });
     </script>
   </head>
@@ -31,7 +31,7 @@
       <div class="trend-list">
         <div class="carousel carousel-slider center" data-indicators="true">
           {% for problem, solution in problems %}
-            <div class="carousel-item red white-text">
+            <div class="carousel-item white-text">
               <h4 class="white-text">{{ problem }}</h4>
               <h5 class="white-text">{{ solution }}</h5>
             </div>
