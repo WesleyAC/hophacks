@@ -1,50 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>APPNAME » Trends</title>
+        <title>APPNAME » Trends</title>
 
-    <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css"  media="screen,projection"/>
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/materialize.min.js"></script>
-    <script src="../static/js/d3.v4.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="../static/css/main.css">
-    <link type="text/css" rel="stylesheet" href="../static/css/material-icon.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css"  media="screen,projection"/>
+        <script src="../static/js/jquery.min.js"></script>
+        <script src="../static/js/materialize.min.js"></script>
+        <script src="../static/js/d3.v4.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="../static/css/main.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/material-icon.css" rel="stylesheet">
 
-    <script>
-      $(document).ready(function(){
-          $('.carousel').carousel();
-      });
-    </script>
-  </head>
-  <body>
-    <div class="container">
-      <svg width="960" height="370"> </svg>
+        <script>
+$(document).ready(function(){
+    $('.carousel').carousel();
+});
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <svg width="960" height="370"> </svg>
 
-      <div class="trend-list">
-        <div class="carousel carousel-slider center" data-indicators="true">
-          {% for problem, solution in problems %}
-            <div class="carousel-item white-text">
-              <h4 class="white-text">{{ problem }}</h4>
-              <h5 class="white-text">{{ solution }}</h5>
+            <div class="row trend-list">
+                <div class="col s2">
+                    <a class="btn-floating btn-large waves-effect waves-light left"
+                       onclick="$('.carousel').carousel('prev'); console.log('going to prev'); return true;">
+                        <i class="material-icons">arrow_backward</i>
+                    </a>
+                </div>
+
+                <div class="col s8 carousel carousel-slider center" data-indicators="true">
+                    {% for problem, solution in problems %}
+                    <div class="carousel-item white-text" href={{mapping[loop.index0]}}>
+                        <h4 class="white-text">{{ problem }}</h4>
+                        <h5 class="white-text">{{ solution }}</h5>
+                    </div>
+                    {% endfor %}
+
+                    <div class="carousel-item white-text center" href={{mapping[problems|length]}}>
+                        <a href="TODO" class="waves-effect waves-light btn">View Suggested Changes</a>
+                    </div>
+                </div>
+
+                <div class="col s2">
+                    <a class="btn-floating btn-large waves-effect waves-light right"
+                       onclick="$('.carousel').carousel('next'); console.log('going to next'); return true;">
+                        <i class="material-icons">arrow_forward</i>
+                    </a>
+                </div>
             </div>
-            <div class="carousel-fixed-item center">
-              <a class="btn-floating btn-large waves-effect waves-light red"
-                 onclick="$('.carousel').carousel('next');">
-                  <i class="material-icons">arrow_forward</i>
-              </a>
-            </div>
-          {% endfor %}
+
+            <br>
+
         </div>
-      </div>
 
-      <br>
+        <script src="../static/js/plot.js"></script>
 
-    </div>
-
-    <script src="../static/js/plot.js"></script>
-
-  </body>
+    </body>
 </html>
