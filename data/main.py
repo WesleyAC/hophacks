@@ -6,7 +6,7 @@ def mmol_to_mgdl(x):
 
 class RawData:
     """
-    Data including both CGM datapoings and boluses
+    Data including both CGM datapoints and boluses
     """
     def __init__(self, tidepool_data):
         """
@@ -22,6 +22,14 @@ class RawData:
             timestamp = datetime.strptime(datapoint["deviceTime"], "%Y-%m-%jT%H:%M:%S")
             #TODO(Wesley) check for unit
             self.data.append((timestamp, mmol_to_mgdl(datapoint["value"])))
+
+        self.insulin = []
+
+        insulin_data = list(filter(lambda x: x["type"] == "bolus", tidepool_data))
+        insulin_data.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%jT%H:%M:%S"))
+        for datapoint in insulin_data:
+            timestamp = datetime.strptime(datapoint["deviceTime"], "%Y-%m-%jT%H:%M:%S")
+            self.insulin.append((timestamp, datapoint["normal"]))
 
 class AvgData:
     """
