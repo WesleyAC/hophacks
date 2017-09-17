@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>GlucoView » Tidepool Import</title>
+        <title>GlucoView » Tidepool Import</title>
 
-    <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="../static/css/main.css">
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/materialize.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="../static/css/main.css">
+        <script src="../static/js/jquery.min.js"></script>
+        <script src="../static/js/materialize.min.js"></script>
 
-    <script>
-      submitLogin = function() {
-        $.post("login", {"username": $("#email_form").val(), "password": $("#password_form").val()}, function(data, txt_status, jqxhr) { window.location.replace("/trends") });
-        $("#login_card").hide()
-        $("#progress_card").removeClass("hide")
-      }
-    </script>
-  </head>
-  <body>
+        <script>
+submitLogin = function() {
+    $.post("login", {"username": $("#email_form").val(), "password": $("#password_form").val()}, function(data, txt_status, jqxhr) { window.location.replace("/trends") });
+    $("#login_card").hide()
+    $("#progress_card").removeClass("hide")
+}
+        </script>
+    </head>
+    <body>
 
-    <div class="container">
+        <div class="container">
 
-      <br>
-      <br>
-      <br>
-      <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
-      <div class="row center">
-        <h4 class="white-text">Log in with Tidepool</h1>
-      </div>
-
-
-      <div class="row">
-        <div class="col s4 offset-s4">
-          <div id="login_card" class="card-panel small white">
-            <div class="input-field">
-              <input id="email_form" type="email" class="validate">
-              <label class="active" for="email_form">Email</label>
+            <div class="row center">
+                <h4 class="white-text">Log in with Tidepool</h1>
             </div>
-            <div class="input-field">
-              <input id="password_form" type="password">
-              <label class="active" for="password_form">Password</label>
+
+
+            <div class="row">
+                <div class="col s4 offset-s4">
+                    <div id="login_card" class="card-panel small white">
+                        <div class="input-field">
+                            <input id="email_form" type="email" class="validate">
+                            <label class="active" for="email_form">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="password_form" type="password">
+                            <label class="active" for="password_form">Password</label>
+                        </div>
+                        <div class="input-field">
+                            <a class="waves-effect waves-light btn" onclick="submitLogin()">Import</a>
+                        </div>
+                    </div>
+                    <div id="progress_card" class="hide card-panel small white">
+                        <h6>Importing data</h6>
+                        <div class="progress">
+                            <div class="indeterminate"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="input-field">
-              <a class="waves-effect waves-light btn" onclick="submitLogin()">Import</a>
-            </div>
-          </div>
-          <div id="progress_card" class="hide card-panel small white">
-            <h6>Importing data</h6>
-            <div class="progress">
-              <div class="indeterminate"></div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
 
-  </body>
+    </body>
 </html>
 
