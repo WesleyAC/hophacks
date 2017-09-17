@@ -17,10 +17,10 @@ class RawData:
         self.tidepool = tidepool_data
         self.data = []
         cgm_data = list(filter(lambda x: x["type"] == "cbg", tidepool_data))
-        cgm_data.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%jT%H:%M:%S"))
+        cgm_data.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%dT%H:%M:%S"))
 
         for datapoint in cgm_data:
-            timestamp = datetime.strptime(datapoint["deviceTime"], "%Y-%m-%jT%H:%M:%S")
+            timestamp = datetime.strptime(datapoint["deviceTime"], "%Y-%m-%dT%H:%M:%S")
             #TODO(Wesley) check for unit
             self.data.append((timestamp, mmol_to_mgdl(datapoint["value"])))
 
@@ -29,9 +29,9 @@ class RawData:
         self.insulin = []
 
         insulin_data = list(filter(lambda x: x["type"] == "bolus", tidepool_data))
-        insulin_data.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%jT%H:%M:%S"))
+        insulin_data.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%dT%H:%M:%S"))
         for datapoint in insulin_data:
-            timestamp = datetime.strptime(datapoint["deviceTime"], "%Y-%m-%jT%H:%M:%S")
+            timestamp = datetime.strptime(datapoint["deviceTime"], "%Y-%m-%dT%H:%M:%S")
             self.insulin.append((timestamp, datapoint["normal"]))
 
 class AvgData:
@@ -137,6 +137,6 @@ class PumpSettings:
         object that represents the most recent active profile.
         """
         settings = list(filter(lambda x: x["type"] == "pumpSettings", data))
-        settings.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%jT%H:%M:%S"))
+        settings.sort(key = lambda x: datetime.strptime(x["deviceTime"], "%Y-%m-%dT%H:%M:%S"))
 
         return cls(settings[0])

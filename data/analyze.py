@@ -5,7 +5,7 @@ from data.main import RawData, AvgData, PumpSettings
 demodata = json.loads(open("data/data_download.json").read())
 rawdata = RawData(demodata)
 
-demo_data_a = AvgData(rawdata, datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
+demo_data_a = AvgData(rawdata, datetime(2017, 5, 30, 0, 0, 0), timedelta(1))
 # demo_data_b = AvgData(rawdata, datetime(2017, 1, 23, 22, 58, 3), timedelta(30))
 # demo_data_c = AvgData(rawdata, datetime(2016, 1, 18, 10, 47, 6), timedelta(7))
 
@@ -104,10 +104,18 @@ def forgot_bolus(avg_data):
     pass
 
 def bedtime_bg(avg_data):
-    return avg_data.avgs[time(23, 59)] > 200 # That was easy
+    try_i = 50
+    for i in range(0,9):
+        if time(23, try_i) in avg_data.avgs:
+            return avg_data.avgs[time(23, try_i)] > 200 # That was easy
+    return False
 
 def morning_bg(avg_data):
-    return not bedtime_bg(avg_data) and avg_data.avgs[time(7,1)] > 200
+    try_i = 0
+    for i in range(0,9):
+        if time(7, try_i) in avg_data.avgs:
+            return not bedtime_bg(avg_data) and avg_data.avgs[time(7,try_i)] > 200
+    return False
 
 def forgot_correction(avg_data):
     pass

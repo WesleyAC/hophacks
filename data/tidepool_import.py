@@ -13,4 +13,4 @@ def tidepool_import(username, passwd):
     }
     r = requests.get('https://api.tidepool.org/data/{}'.format(user_id), headers=headers)
     #TODO(Wesley) fix hardcoded date
-    return AvgData(RawData(r.json()), datetime(2017, 1, 31, 22, 58, 3), timedelta(7))
+    return AvgData(RawData(r.json()), datetime(2017, 5, 29, 0, 0, 0), timedelta(1))
