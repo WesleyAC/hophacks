@@ -64,8 +64,8 @@ class AvgData:
 
         self.avgs = {list(self.datamap.keys())[i]: v for (i, v) in enumerate(self.avgs_list)}
 
-    def fudge(self, amount):
-        self.avgs_list = list(map(lambda x: x + amount, self.avgs_list))
+    def fudge(self, amount, skew=0):
+        self.avgs_list = list(map(lambda x: x[1] + amount + x[0]*skew, enumerate(self.avgs_list)))
         self.avgs = {list(self.datamap.keys())[i]: v for (i, v) in enumerate(self.avgs_list)}
 
 

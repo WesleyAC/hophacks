@@ -6,9 +6,10 @@ demodata = json.loads(open("data/data_download.json").read())
 rawdata = RawData(demodata)
 
 demo_data_a = AvgData(rawdata, datetime(2017, 5, 30, 0, 0, 0), timedelta(1))
-demo_data_b = AvgData(rawdata, datetime(2017, 5, 25, 0, 0, 0), timedelta(1))
-demo_data_b.fudge(-100)
-demo_data_c = AvgData(rawdata, datetime(2017, 5, 28, 0, 0, 0), timedelta(1))
+demo_data_b = AvgData(rawdata, datetime(2017, 5, 30, 0, 0, 0), timedelta(1))
+demo_data_b.fudge(-20,-0.35)
+demo_data_c = AvgData(rawdata, datetime(2017, 5, 25, 0, 0, 0), timedelta(1))
+demo_data_c.fudge(-100)
 
 def problem_to_text(problem):
     """
