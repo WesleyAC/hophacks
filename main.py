@@ -55,5 +55,4 @@ def trends():
     else:
         return redirect(url_for("login_get"))
 
-    mapping = ['#one!','#two!','#three!','#four!','#five!','#six!']
-    return render_template('trends.html', problems=problems, settings=settings, new_settings=new_settings, mapping=mapping)
+    return render_template('trends.html', problems=problems, settings=settings, new_settings=new_settings)

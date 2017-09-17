@@ -16,11 +16,18 @@
         <script>
 $(document).ready(function(){
     $('.carousel').carousel();
+    $('#settings_container').hide();
+    $('#settings_container').removeClass('hide');
 });
+
+showSettings = function() {
+    $("#main_container").animate({height: "0px", opacity: 0}, 400, "swing", function() { $("#main_container").hide() });
+    $("#settings_container").fadeIn(600);
+}
         </script>
     </head>
     <body>
-        <div class="container">
+        <div id="main_container" class="container">
             <svg width="960" height="370"> </svg>
 
             <div class="row trend-list">
@@ -33,14 +40,14 @@ $(document).ready(function(){
 
                 <div class="col s8 carousel carousel-slider center" data-indicators="true">
                     {% for problem, solution in problems %}
-                    <div class="carousel-item white-text" href={{mapping[loop.index0]}}>
+                    <div class="carousel-item white-text">
                         <h4 class="white-text">{{ problem }}</h4>
                         <h5 class="white-text">{{ solution }}</h5>
                     </div>
                     {% endfor %}
 
-                    <div class="carousel-item white-text center" href={{mapping[problems|length]}}>
-                        <a href="TODO" class="waves-effect waves-light btn">View Suggested Changes</a>
+                    <div class="carousel-item white-text center">
+                        <a onclick="showSettings()" href="#" class="waves-effect waves-light btn">View Suggested Changes</a>
                     </div>
                 </div>
 
@@ -54,6 +61,10 @@ $(document).ready(function(){
 
             <br>
 
+        </div>
+
+        <div id="settings_container" class="container hide">
+            <h1 class="white-text">Test!</h1>
         </div>
 
         <script src="../static/js/plot.js"></script>
