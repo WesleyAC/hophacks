@@ -97,7 +97,7 @@ class PumpSettings:
                 if block["start"] >= 16 and block["start"] < 20:
                     block["rate"] += amount
             elif timeofday == "night":
-                if block["start"] >= 20 and block["start"] < 7:
+                if block["start"] >= 20 or block["start"] < 7:
                     block["rate"] += amount
 
     def increment_bolus_carbs_block(self, timeofday, amount):
@@ -112,7 +112,7 @@ class PumpSettings:
                 if block["start"] >= 16 and block["start"] < 20:
                     block["amount"] += amount
             elif timeofday == "night":
-                if block["start"] >= 20 and block["start"] < 7:
+                if block["start"] >= 20 or block["start"] < 7:
                     block["amount"] += amount
 
     def increment_bolus_correction_block(self, timeofday, amount):
@@ -127,7 +127,7 @@ class PumpSettings:
                 if block["start"] >= 16 and block["start"] < 20:
                     block["amount"] += amount
             elif timeofday == "night":
-                if block["start"] >= 20 and block["start"] < 7:
+                if block["start"] >= 20 or block["start"] < 7:
                     block["amount"] += amount
 
     @classmethod
