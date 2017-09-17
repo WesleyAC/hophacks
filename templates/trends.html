@@ -81,8 +81,8 @@ showTrends = function() {
                             <table class="striped">
                                 <thead>
                                     <tr>
-                                        <th>Start</th>
-                                        <th>Suggested Change</th>
+                                        <th>Time</th>
+                                        <th>Value</th>
                                     </tr>
                                 </thead>
 
@@ -93,7 +93,7 @@ showTrends = function() {
                                    class="delta-item"
                                    {% endif %}
                                    >
-                                   <td>{{ i.start }}</td>
+                                   <td>{{ "{}:{:02d}".format(floor(i.start), int((i.start%1)*60)) }}</td>
                                    <td>
                                        {% if i.rate - new_settings.basel[loop.index0].rate != 0 %}
                                        {{ new_settings.basel[loop.index0].rate | round(2) }} ({{ new_settings.basel[loop.index0].rate - i.rate | round(2) }})
@@ -112,12 +112,12 @@ showTrends = function() {
                 <div class="col s4 m4 l4">
                     <div class="card white darken-1">
                         <div class="card-content">
-                            <span class="card-title">Bolus Carbs</span>
+                            <span class="card-title">Bolus</span>
                             <table class="striped">
                                 <thead>
                                     <tr>
                                         <th>Start</th>
-                                        <th>Suggested Change</th>
+                                        <th>Value</th>
                                     </tr>
                                 </thead>
 
@@ -128,7 +128,7 @@ showTrends = function() {
                                         {% else %}
                                         <tr>
                                             {% endif %}
-                                            <td>{{ i.start }}</td>
+                                            <td>{{ "{}:{:02d}".format(floor(i.start), int((i.start%1)*60)) }}</td>
                                             <td>
                                                 {% if i.amount - new_settings.bolus_carbs[loop.index0].amount != 0 %}
                                                 {{ new_settings.bolus_carbs[loop.index0].amount | round(2) }} ({{ new_settings.bolus_carbs[loop.index0].amount - i.amount | round(2) }})
@@ -147,12 +147,12 @@ showTrends = function() {
                 <div class="col s4 m4 l4">
                     <div class="card white darken-1">
                         <div class="card-content">
-                            <span class="card-title">Bolus Correction</span>
+                            <span class="card-title">Correction</span>
                             <table class="striped">
                                 <thead>
                                     <tr>
                                         <th>Start</th>
-                                        <th>Suggested Change</th>
+                                        <th>Value</th>
                                     </tr>
                                 </thead>
 
@@ -163,7 +163,7 @@ showTrends = function() {
                                         {% else %}
                                         <tr>
                                             {% endif %}
-                                            <td>{{ i.start }}</td>
+                                            <td>{{ "{}:{:02d}".format(floor(i.start), int((i.start%1)*60)) }}</td>
                                             <td>
                                                 {% if i.amount - new_settings.bolus_correction[loop.index0].amount != 0 %}
                                                 {{ new_settings.bolus_correction[loop.index0].amount | round(2)}} ({{ new_settings.bolus_correction[loop.index0].amount - i.amount | round(2) }})

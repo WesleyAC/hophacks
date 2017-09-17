@@ -1,5 +1,6 @@
 from data import analyze, main
 from data.tidepool_import import tidepool_import
+import math
 import uuid
 import json
 from flask import Flask, Response, session, request, redirect, url_for, render_template
@@ -57,4 +58,4 @@ def trends():
     else:
         return redirect(url_for("login_get"))
 
-    return render_template('trends.html', problems=problems, settings=settings, new_settings=new_settings)
+    return render_template('trends.html', problems=problems, settings=settings, new_settings=new_settings, floor=math.floor, int=int)
