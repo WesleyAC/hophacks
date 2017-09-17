@@ -3,13 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
         <title>GlucoView » Trends</title>
-
         <link type="text/css" rel="stylesheet" href="../static/css/materialize.min.css"  media="screen,projection"/>
-        <script src="../static/js/jquery.min.js"></script>
-        <script src="../static/js/materialize.min.js"></script>
-        <script src="../static/js/d3.v4.min.js"></script>
+        <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../static/js/materialize.min.js"></script>
+        <script type="text/javascript" src="../static/js/d3.v4.min.js"></script>
         <link type="text/css" rel="stylesheet" href="../static/css/main.css">
         <link type="text/css" rel="stylesheet" href="../static/css/material-icon.css" rel="stylesheet">
 
@@ -64,20 +62,102 @@ showSettings = function() {
         </div>
 
         <div id="settings_container" class="container hide">
-            {% for i in settings.basel %}
-                <p class="white-text">{{ i.start }}   {{ i.rate }}          {{ new_settings.basel[loop.index0].start }}    {{new_settings.basel[loop.index0].rate }}</p>
-            {% endfor %}
-                <p class="white-text">'bye'</p>
-            {% for i in settings.bolus_carbs %}
-                <p class="white-text">{{ i.start  }}   {{ i.amount }}      {{ new_settings.bolus_carbs[loop.index0].start }}    {{new_settings.bolus_carbs[loop.index0].amount }}</p>
-            {% endfor %}
-                <p class="white-text">'bye'</p>
-            {% for i in settings.bolus_correction %}
-                <p class="white-text">{{ i.start }}   {{ i.amount }}       {{ new_settings.bolus_correction[loop.index0].start }}    {{new_settings.bolus_correction[loop.index0].amount }}</p>
-            {% endfor %}
-        </div>
+            <div class="row">
+                <div class="col s6 m6">
+                    <div class="card white darken-1">
+                        <div class="card-content">
+                            <table class="striped">
+                                <thead>
+                                    <tr>
+                                        <th>Start</th>
+                                        <th>Suggested Change</th>
+                                    </tr>
+                                </thead>
 
-        <script src="../static/js/plot.js"></script>
+                                <tbody>
+                                    {% for i in settings.basel %}
+                                    <tr
+                                   {% if i.rate - new_settings.basel[loop.index0].rate != 0 %}
+                                   class="delta-item"
+                                   {% endif %}
+                                   >
+                                   <td>{{ i.start }}</td>
+                                   <td>
+                                       {% if i.rate - new_settings.basel[loop.index0].rate != 0 %}
+                                       {{ new_settings.basel[loop.index0].rate }} ({{ i.rate - new_settings.basel[loop.index0].rate }})
+                                       {% else %}
+                                       {{ i.rate }}
+                                       {% endif %}
+                                   </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <table class="striped">
+                                <thead>
+                                    <tr>
+                                        <th>Start</th>
+                                        <th>Suggested Change</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for i in settings.bolus_carbs %}
+                                    {% if i.amount - new_settings.bolus_carbs[loop.index0].amount != 0 %}
+                                    <tr class="delta-item">
+                                        {% else %}
+                                        <tr>
+                                            {% endif %}
+                                            <td>{{ i.start }}</td>
+                                            <td>
+                                                {% if i.amount - new_settings.bolus_carbs[loop.index0].amount != 0 %}
+                                                {{ new_settings.bolus_carbs[loop.index0].amount }} ({{ i.amount - new_settings.bolus_carbs[loop.index0].amount }})
+                                                {% else %}
+                                                {{ i.amount }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <table class="striped">
+                                <thead>
+                                    <tr>
+                                        <th>Start</th>
+                                        <th>Suggested Change</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for i in settings.bolus_correction%}
+                                    {% if i.amount - new_settings.bolus_correction[loop.index0].amount != 0 %}
+                                    <tr class="delta-item">
+                                        {% else %}
+                                        <tr>
+                                            {% endif %}
+                                            <td>{{ i.start }}</td>
+                                            <td>
+                                                {% if i.amount - new_settings.bolus_correction[loop.index0].amount != 0 %}
+                                                {{ new_settings.bolus_correction[loop.index0].amount }} ({{ i.amount - new_settings.bolus_correction[loop.index0].amount }})
+                                                {% else %}
+                                                {{ i.amount }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <script type="text/javascript" src="../static/js/plot.js"></script>
 
     </body>
 </html>
