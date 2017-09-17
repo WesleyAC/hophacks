@@ -31,7 +31,7 @@ showSettings = function() {
             <div class="row trend-list">
                 <div class="col s2">
                     <a class="btn-floating btn-large waves-effect waves-light left"
-        onclick="$('.carousel').carousel('prev')">
+                       onclick="$('.carousel').carousel('prev')">
                         <i class="backwards-arrow material-icons">arrow_forward</i>
                     </a>
                 </div>
@@ -51,7 +51,7 @@ showSettings = function() {
 
                 <div class="col s2">
                     <a class="btn-floating btn-large waves-effect waves-light right"
-        onclick="$('.carousel').carousel('next')">
+                       onclick="$('.carousel').carousel('next')">
                         <i class="material-icons">arrow_forward</i>
                     </a>
                 </div>
@@ -62,8 +62,12 @@ showSettings = function() {
         </div>
 
         <div id="settings_container" class="container hide">
+            <br>
+            <br>
+            <br>
+            <br>
             <div class="row">
-                <div class="col s6 m6">
+                <div class="col s4 m4 l4">
                     <div class="card white darken-1">
                         <div class="card-content">
                             <table class="striped">
@@ -77,18 +81,18 @@ showSettings = function() {
                                 <tbody>
                                     {% for i in settings.basel %}
                                     <tr
-              {% if i.rate - new_settings.basel[loop.index0].rate != 0 %}
-              class="delta-item"
-     {% endif %}
-     >
-     <td>{{ i.start }}</td>
-     <td>
-         {% if i.rate - new_settings.basel[loop.index0].rate != 0 %}
-         {{ new_settings.basel[loop.index0].rate }} ({{ i.rate - new_settings.basel[loop.index0].rate }})
-         {% else %}
-         {{ i.rate }}
-         {% endif %}
-     </td>
+                                   {% if i.rate - new_settings.basel[loop.index0].rate != 0 %}
+                                   class="delta-item"
+                                   {% endif %}
+                                   >
+                                   <td>{{ i.start }}</td>
+                                   <td>
+                                       {% if i.rate - new_settings.basel[loop.index0].rate != 0 %}
+                                       {{ new_settings.basel[loop.index0].rate }} ({{ i.rate - new_settings.basel[loop.index0].rate }})
+                                       {% else %}
+                                       {{ i.rate }}
+                                       {% endif %}
+                                   </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -97,7 +101,7 @@ showSettings = function() {
                     </div>
                 </div>
 
-                <div class="col s6 m6">
+                <div class="col s4 m4 l4">
                     <div class="card white darken-1">
                         <div class="card-content">
                             <table class="striped">
@@ -131,7 +135,7 @@ showSettings = function() {
                     </div>
                 </div>
 
-                <div class="col s6 m6">
+                <div class="col s4 m4 l4">
                     <div class="card white darken-1">
                         <div class="card-content">
                             <table class="striped">
