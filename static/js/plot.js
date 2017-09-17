@@ -52,7 +52,7 @@ d3.json("/graph", function(d) {
       .attr("stroke", "steelblue")
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
-      .attr("stroke-width", 1.5)
+      .attr("stroke-width", 5.5)
       .attr("d", line);
 
   d3.selectAll("text").attr("fill","#FFF");
