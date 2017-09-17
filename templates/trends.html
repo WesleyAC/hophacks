@@ -74,6 +74,7 @@ showTrends = function() {
                 <div class="col s4 m4 l4">
                     <div class="card white darken-1">
                         <div class="card-content">
+                            <span class="card-title">Basel</span>
                             <table class="striped">
                                 <thead>
                                     <tr>
@@ -92,9 +93,9 @@ showTrends = function() {
                                    <td>{{ i.start }}</td>
                                    <td>
                                        {% if i.rate - new_settings.basel[loop.index0].rate != 0 %}
-                                       {{ new_settings.basel[loop.index0].rate }} ({{ i.rate - new_settings.basel[loop.index0].rate }})
+                                       {{ new_settings.basel[loop.index0].rate | round(2) }} ({{ new_settings.basel[loop.index0].rate - i.rate | round(2) }})
                                        {% else %}
-                                       {{ i.rate }}
+                                       {{ i.rate | round(2) }}
                                        {% endif %}
                                    </td>
                                     </tr>
@@ -108,6 +109,7 @@ showTrends = function() {
                 <div class="col s4 m4 l4">
                     <div class="card white darken-1">
                         <div class="card-content">
+                            <span class="card-title">Bolus Carbs</span>
                             <table class="striped">
                                 <thead>
                                     <tr>
@@ -126,9 +128,9 @@ showTrends = function() {
                                             <td>{{ i.start }}</td>
                                             <td>
                                                 {% if i.amount - new_settings.bolus_carbs[loop.index0].amount != 0 %}
-                                                {{ new_settings.bolus_carbs[loop.index0].amount }} ({{ i.amount - new_settings.bolus_carbs[loop.index0].amount }})
+                                                {{ new_settings.bolus_carbs[loop.index0].amount | round(2) }} ({{ new_settings.bolus_carbs[loop.index0].amount - i.amount | round(2) }})
                                                 {% else %}
-                                                {{ i.amount }}
+                                                {{ i.amount | round(2) }}
                                                 {% endif %}
                                             </td>
                                         </tr>
@@ -142,6 +144,7 @@ showTrends = function() {
                 <div class="col s4 m4 l4">
                     <div class="card white darken-1">
                         <div class="card-content">
+                            <span class="card-title">Bolus Correction</span>
                             <table class="striped">
                                 <thead>
                                     <tr>
@@ -160,9 +163,9 @@ showTrends = function() {
                                             <td>{{ i.start }}</td>
                                             <td>
                                                 {% if i.amount - new_settings.bolus_correction[loop.index0].amount != 0 %}
-                                                {{ new_settings.bolus_correction[loop.index0].amount }} ({{ i.amount - new_settings.bolus_correction[loop.index0].amount }})
+                                                {{ new_settings.bolus_correction[loop.index0].amount | round(2)}} ({{ new_settings.bolus_correction[loop.index0].amount - i.amount | round(2) }})
                                                 {% else %}
-                                                {{ i.amount }}
+                                                {{ i.amount | round(2) }}
                                                 {% endif %}
                                             </td>
                                         </tr>
