@@ -35,3 +35,7 @@ body {
   stroke: black;
   shape-rendering: crispEdges;
 }
+
+.backwards-arrow {
+    transform:rotate(0.5turn);
+}
