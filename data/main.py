@@ -95,10 +95,10 @@ class PumpSettings:
                 if block["start"] >= 7 and block["start"] < 11:
                     block["rate"] += amount
             elif timeofday == "afternoon":
-                if block["start"] >= 11 and block["start"] < 16:
+                if block["start"] >= 11 and block["start"] < 18:
                     block["rate"] += amount
             elif timeofday == "evening":
-                if block["start"] >= 16 and block["start"] < 20:
+                if block["start"] >= 18 and block["start"] < 20:
                     block["rate"] += amount
             elif timeofday == "night":
                 if block["start"] >= 20 or block["start"] < 7:
@@ -110,10 +110,10 @@ class PumpSettings:
                 if block["start"] >= 7 and block["start"] < 11:
                     block["amount"] += amount
             elif timeofday == "afternoon":
-                if block["start"] >= 11 and block["start"] < 16:
+                if block["start"] >= 11 and block["start"] < 18:
                     block["amount"] += amount
             elif timeofday == "evening":
-                if block["start"] >= 16 and block["start"] < 20:
+                if block["start"] >= 18 and block["start"] < 20:
                     block["amount"] += amount
             elif timeofday == "night":
                 if block["start"] >= 20 or block["start"] < 7:
@@ -125,10 +125,10 @@ class PumpSettings:
                 if block["start"] >= 7 and block["start"] < 11:
                     block["amount"] += amount
             elif timeofday == "afternoon":
-                if block["start"] >= 11 and block["start"] < 16:
+                if block["start"] >= 11 and block["start"] < 18:
                     block["amount"] += amount
             elif timeofday == "evening":
-                if block["start"] >= 16 and block["start"] < 20:
+                if block["start"] >= 18 and block["start"] < 20:
                     block["amount"] += amount
             elif timeofday == "night":
                 if block["start"] >= 20 or block["start"] < 7:
