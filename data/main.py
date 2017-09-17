@@ -64,6 +64,10 @@ class AvgData:
 
         self.avgs = {list(self.datamap.keys())[i]: v for (i, v) in enumerate(self.avgs_list)}
 
+    def fudge(self, amount):
+        self.avgs_list = list(map(lambda x: x + amount, self.avgs_list))
+        self.avgs = {list(self.datamap.keys())[i]: v for (i, v) in enumerate(self.avgs_list)}
+
 
 class PumpSettings:
     """
