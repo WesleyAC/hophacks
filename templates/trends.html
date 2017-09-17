@@ -64,7 +64,17 @@ showSettings = function() {
         </div>
 
         <div id="settings_container" class="container hide">
-            <h1 class="white-text">Test!</h1>
+            {% for i in settings.basel %}
+                <p class="white-text">{{ i.start }}   {{ i.rate }}          {{ new_settings.basel[loop.index0].start }}    {{new_settings.basel[loop.index0].rate }}</p>
+            {% endfor %}
+                <p class="white-text">'bye'</p>
+            {% for i in settings.bolus_carbs %}
+                <p class="white-text">{{ i.start  }}   {{ i.amount }}      {{ new_settings.bolus_carbs[loop.index0].start }}    {{new_settings.bolus_carbs[loop.index0].amount }}</p>
+            {% endfor %}
+                <p class="white-text">'bye'</p>
+            {% for i in settings.bolus_correction %}
+                <p class="white-text">{{ i.start }}   {{ i.amount }}       {{ new_settings.bolus_correction[loop.index0].start }}    {{new_settings.bolus_correction[loop.index0].amount }}</p>
+            {% endfor %}
         </div>
 
         <script src="../static/js/plot.js"></script>
