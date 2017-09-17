@@ -19,8 +19,12 @@ $(document).ready(function(){
 });
 
 showSettings = function() {
-    $("#main_container").animate({height: "0px", opacity: 0}, 400, "swing", function() { $("#main_container").hide() });
-    $("#settings_container").fadeIn(600);
+    $("#main_container").animate({height: "10px", opacity: 0}, 400, "swing", function() { $("#main_container").hide() });
+    $("#settings_container").animate({height:"100%", opacity:1}, 400, "swing", function() { $("#settings_container").show() });
+}
+showTrends = function() {
+    $("#settings_container").animate({height: "10px", opacity: 0}, 400, "swing", function() { $("#settings_container").hide() });
+    $("#main_container").animate({height:"100%", opacity:1}, 400, "swing", function() { $("#main_container").show() });
 }
         </script>
     </head>
@@ -168,6 +172,9 @@ showSettings = function() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row center">
+                <a onclick="showTrends()" href="#" class="waves-effect waves-light btn">Return to Trends</a>
             </div>
         </div>
 
