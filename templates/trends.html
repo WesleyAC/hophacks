@@ -26,6 +26,34 @@ showTrends = function() {
     $("#settings_container").animate({height: "10px", opacity: 0}, 400, "swing", function() { $("#settings_container").hide() });
     $("#main_container").animate({height:"100%", opacity:1}, 400, "swing", function() { $("#main_container").show() });
 }
+
+let carousel_index = 0;
+let carousel_len = {{problems|length}};
+
+carouselNext = function() {
+  $('.carousel').carousel('next');
+  carousel_index++;
+  updateState();
+}
+
+carouselPrev = function() {
+  $('.carousel').carousel('prev');
+  carousel_index--;
+  updateState();
+}
+
+updateState = function() {
+  if (carousel_index == 0) {
+    $("#leftdiv").addClass("scale-out");
+  } else {
+    $("#leftdiv").removeClass("scale-out");
+  }
+  if (carousel_index == carousel_len) {
+    $("#rightdiv").addClass("scale-out");
+  } else {
+    $("#rightdiv").removeClass("scale-out");
+  }
+}
         </script>
     </head>
     <body>
@@ -34,8 +62,8 @@ showTrends = function() {
 
             <div class="row trend-list">
                 <div class="col s2" style="margin-top:80px">
-                    <a class="btn-floating btn-large waves-effect waves-light left"
-                       onclick="$('.carousel').carousel('prev')">
+                    <a id="leftdiv" class="scale-out scale-transition btn-floating btn-large waves-effect waves-light left"
+                       onclick="carouselPrev()">
                         <i class="backwards-arrow material-icons">arrow_forward</i>
                     </a>
                 </div>
@@ -54,8 +82,8 @@ showTrends = function() {
                 </div>
 
                 <div class="col s2" style="margin-top:80px">
-                    <a class="btn-floating btn-large waves-effect waves-light right"
-                       onclick="$('.carousel').carousel('next')">
+                    <a id="rightdiv" class="scale-transition btn-floating btn-large waves-effect waves-light right"
+                       onclick="carouselNext()">
                         <i class="material-icons">arrow_forward</i>
                     </a>
                 </div>
